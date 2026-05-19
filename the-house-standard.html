@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The House Standard — Artisan Sourdough</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #faf6f0;
+  --warm-white: #fdf9f4;
+  --linen: #f0e8da;
+  --tan: #e2d0b8;
+  --brown: #8b6645;
+  --dark-brown: #3d2b1a;
+  --muted: #9a8472;
+  --text: #2c1f12;
+  --rose: #c4826a;
+  --sage: #7a8c6e;
+  --accent: #b5703a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--warm-white);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 56px;
+  background: rgba(253,249,244,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(226,208,184,0.4);
+  transition: padding 0.4s;
+}
+
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav-logo-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--dark-brown);
+}
+
+.nav-logo-sub {
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s;
+  font-weight: 400;
+}
+.nav-links a:hover { color: var(--accent); }
+
+.nav-order {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border: 1px solid var(--brown);
+  color: var(--brown);
+  text-decoration: none;
+  transition: all 0.3s;
+  font-weight: 400;
+}
+.nav-order:hover {
+  background: var(--brown);
+  color: var(--cream);
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 56px 80px 56px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  animation: fadeIn 1s forwards 0.4s;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--rose);
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 6vw, 88px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  color: var(--dark-brown);
+  margin-bottom: 28px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-line {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.hero-line-1 { animation: slideUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards 0.6s; }
+.hero-line-2 { animation: slideUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards 0.75s; }
+.hero-line-3 { animation: slideUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards 0.9s; }
+
+@keyframes slideUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.hero-p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 380px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeIn 1s forwards 1.1s;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  opacity: 0;
+  animation: fadeIn 1s forwards 1.3s;
+}
+
+.btn-fill {
+  padding: 14px 36px;
+  background: var(--dark-brown);
+  color: var(--cream);
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-fill:hover { background: var(--accent); }
+
+.btn-text {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: all 0.3s;
+}
+.btn-text:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Hero illustration */
+.hero-right {
+  position: relative;
+  overflow: hidden;
+  background: var(--linen);
+}
+
+.hero-illustration {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* SVG bread loaf illustration */
+.bread-scene {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.float-badge {
+  position: absolute;
+  bottom: 48px;
+  left: -24px;
+  background: var(--warm-white);
+  padding: 20px 24px;
+  box-shadow: 0 8px 40px rgba(60,40,20,0.12);
+  z-index: 3;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.badge-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1;
+}
+.badge-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* Grain texture overlay */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ===== ABOUT STRIP ===== */
+.about-strip {
+  background: var(--dark-brown);
+  padding: 28px 56px;
+  display: flex;
+  justify-content: center;
+  gap: 64px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.strip-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--tan);
+}
+
+.strip-icon { font-size: 18px; }
+
+.strip-text {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.strip-dot {
+  width: 4px; height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+/* ===== STORY SECTION ===== */
+.story {
+  padding: 120px 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.story-visual {
+  position: relative;
+}
+
+/* Decorative bread circle illustration */
+.bread-circle {
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 480px;
+  position: relative;
+}
+
+.story-tag {
+  position: absolute;
+  top: 20px;
+  right: -20px;
+  background: var(--rose);
+  color: white;
+  padding: 12px 20px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  font-weight: 400;
+}
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--rose);
+}
+
+.story h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 4vw, 58px);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--dark-brown);
+  margin-bottom: 28px;
+}
+
+.story h2 em { font-style: italic; color: var(--accent); }
+
+.story p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--muted);
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.story-values {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.value-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--linen);
+}
+
+.value-icon {
+  width: 36px; height: 36px;
+  background: var(--linen);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.value-text strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dark-brown);
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.value-text span {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+/* ===== BREADS SECTION ===== */
+.breads {
+  background: var(--linen);
+  padding: 120px 56px;
+}
+
+.breads-header {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 72px;
+}
+
+.breads-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 5vw, 64px);
+  font-weight: 300;
+  color: var(--dark-brown);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.breads-header p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.breads-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bread-card {
+  background: var(--warm-white);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s;
+}
+
+.bread-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(60,40,20,0.12);
+}
+
+.bread-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bread-img-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.bread-card:hover .bread-img-bg { transform: scale(1.05); }
+
+.bread-emoji {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+  font-size: 72px;
+  animation: gentle-bob 4s ease-in-out infinite;
+}
+
+@keyframes gentle-bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+.bread-card:nth-child(2) .bread-emoji { animation-delay: -1.3s; }
+.bread-card:nth-child(3) .bread-emoji { animation-delay: -2.6s; }
+.bread-card:nth-child(4) .bread-emoji { animation-delay: -0.8s; }
+.bread-card:nth-child(5) .bread-emoji { animation-delay: -2s; }
+.bread-card:nth-child(6) .bread-emoji { animation-delay: -3.2s; }
+
+.bread-info {
+  padding: 24px 28px 28px;
+  border-top: 1px solid var(--linen);
+}
+
+.bread-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--dark-brown);
+  margin-bottom: 6px;
+}
+
+.bread-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+
+.bread-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bread-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.bread-order {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--brown);
+  text-decoration: none;
+  border-bottom: 1px solid var(--tan);
+  padding-bottom: 2px;
+  transition: all 0.3s;
+}
+.bread-order:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+.coming-badge {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: var(--sage);
+  color: white;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  font-weight: 400;
+}
+
+/* ===== PROCESS SECTION ===== */
+.process {
+  padding: 120px 56px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.process-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 72px;
+}
+
+.process-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 5vw, 64px);
+  font-weight: 300;
+  color: var(--dark-brown);
+  line-height: 1.1;
+}
+
+.process-header p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.9;
+  font-weight: 300;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--tan), var(--accent), var(--tan));
+}
+
+.step {
+  padding: 0 24px;
+  text-align: center;
+  position: relative;
+}
+
+.step-circle {
+  width: 56px; height: 56px;
+  background: var(--warm-white);
+  border: 1px solid var(--tan);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 22px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s;
+}
+
+.step:hover .step-circle {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.1);
+}
+
+.step-num {
+  position: absolute;
+  top: -8px; right: -8px;
+  width: 20px; height: 20px;
+  background: var(--rose);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: white;
+  font-weight: 500;
+}
+
+.step h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--dark-brown);
+  margin-bottom: 8px;
+}
+
+.step p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ===== ORDER SECTION ===== */
+.order-section {
+  background: var(--dark-brown);
+  padding: 100px 56px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.order-section::before {
+  content: '';
+  position: absolute;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(181,112,58,0.15), transparent 70%);
+  pointer-events: none;
+}
+
+.order-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.order-section .section-label {
+  justify-content: center;
+  color: var(--rose);
+}
+.order-section .section-label::before { background: var(--rose); }
+
+.order-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.order-section h2 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.order-section p {
+  font-size: 15px;
+  color: rgba(250,246,240,0.5);
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+/* Email form */
+.email-form {
+  display: flex;
+  gap: 0;
+  max-width: 460px;
+  margin: 0 auto 20px;
+}
+
+.email-input {
+  flex: 1;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-right: none;
+  color: var(--cream);
+  font-size: 13px;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.email-input::placeholder { color: rgba(250,246,240,0.3); }
+.email-input:focus { border-color: rgba(181,112,58,0.6); }
+
+.email-btn {
+  padding: 16px 28px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Jost', sans-serif;
+  cursor: pointer;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+.email-btn:hover { background: var(--rose); }
+
+.form-note {
+  font-size: 11px;
+  color: rgba(250,246,240,0.3);
+  letter-spacing: 1px;
+}
+
+/* ===== TESTIMONIAL ===== */
+.testimonial-strip {
+  background: var(--linen);
+  padding: 80px 56px;
+  text-align: center;
+}
+
+.testimonial-strip blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--dark-brown);
+  line-height: 1.5;
+  max-width: 700px;
+  margin: 0 auto 24px;
+}
+
+.testimonial-strip cite {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-style: normal;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--dark-brown);
+  padding: 60px 56px 40px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 48px;
+}
+
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--cream);
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.footer-tagline {
+  font-size: 13px;
+  color: rgba(250,246,240,0.4);
+  font-weight: 300;
+  line-height: 1.7;
+  max-width: 260px;
+}
+
+.footer-col h4 {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 10px; }
+.footer-col a {
+  font-size: 13px;
+  color: rgba(250,246,240,0.4);
+  text-decoration: none;
+  font-weight: 300;
+  transition: color 0.3s;
+}
+.footer-col a:hover { color: var(--cream); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-bottom p {
+  font-size: 11px;
+  color: rgba(250,246,240,0.25);
+  letter-spacing: 1px;
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 100px 24px 48px; }
+  .hero-right { height: 340px; }
+  .story, .process-header { grid-template-columns: 1fr; gap: 48px; }
+  .breads-grid { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .process-steps::before { display: none; }
+  section, .story, .process, .breads { padding: 80px 24px; }
+  .about-strip { padding: 24px; gap: 24px; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .email-form { flex-direction: column; }
+  .email-input { border-right: 1px solid rgba(255,255,255,0.15); border-bottom: none; }
+}
+
+@media (max-width: 600px) {
+  .breads-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 48px; }
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-main">The House Standard</div>
+    <div class="nav-logo-sub">Artisan Sourdough</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#breads">The Breads</a></li>
+    <li><a href="#process">Our Process</a></li>
+    <li><a href="#order">Order</a></li>
+  </ul>
+  <a href="#order" class="nav-order">Pre-Order</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Small Batch · Slow Fermented · Made with Love</div>
+    <h1>
+      <span class="hero-line hero-line-1">Bread</span>
+      <span class="hero-line hero-line-2">the way it was</span>
+      <span class="hero-line hero-line-3"><em>meant to be.</em></span>
+    </h1>
+    <p class="hero-p">Real ingredients. Long fermentation. No shortcuts. The House Standard is built on the belief that the best things in life are worth doing slowly — and sharing generously.</p>
+    <div class="hero-actions">
+      <a href="#breads" class="btn-fill">See Our Breads</a>
+      <a href="#story" class="btn-text">Our Story →</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-illustration">
+      <!-- Decorative background shapes -->
+      <svg class="bread-scene" viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <!-- Warm background -->
+        <rect width="600" height="700" fill="#f0e8da"/>
+        <!-- Soft circle backdrop -->
+        <circle cx="300" cy="320" r="220" fill="#e8d8c4" opacity="0.6"/>
+        <!-- Decorative arcs -->
+        <path d="M 80 600 Q 300 200 520 600" stroke="#c9b090" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M 100 650 Q 300 180 500 650" stroke="#c9b090" stroke-width="1" fill="none" opacity="0.3"/>
+        <!-- Wheat stalks left -->
+        <g opacity="0.35" stroke="#8b6645" stroke-width="1.5" fill="none">
+          <line x1="80" y1="680" x2="120" y2="420"/>
+          <ellipse cx="120" cy="410" rx="8" ry="14" fill="#8b6645" transform="rotate(-15,120,410)"/>
+          <line x1="113" y1="450" x2="95" y2="430"/>
+          <line x1="116" y1="435" x2="98" y2="415"/>
+          <line x1="60" y1="680" x2="95" y2="440"/>
+          <ellipse cx="95" cy="430" rx="7" ry="12" fill="#8b6645" transform="rotate(10,95,430)"/>
+        </g>
+        <!-- Wheat stalks right -->
+        <g opacity="0.35" stroke="#8b6645" stroke-width="1.5" fill="none">
+          <line x1="520" y1="680" x2="480" y2="420"/>
+          <ellipse cx="480" cy="410" rx="8" ry="14" fill="#8b6645" transform="rotate(15,480,410)"/>
+          <line x1="487" y1="450" x2="505" y2="430"/>
+          <line x1="484" y1="435" x2="502" y2="415"/>
+          <line x1="540" y1="680" x2="505" y2="440"/>
+          <ellipse cx="505" cy="430" rx="7" ry="12" fill="#8b6645" transform="rotate(-10,505,430)"/>
+        </g>
+        <!-- Main bread loaf -->
+        <g transform="translate(150, 200)">
+          <!-- Loaf body -->
+          <ellipse cx="150" cy="160" rx="130" ry="75" fill="#c4935a"/>
+          <!-- Loaf top dome -->
+          <path d="M 30 160 Q 50 60 150 55 Q 250 60 270 160 Z" fill="#d4a46a"/>
+          <!-- Score marks -->
+          <path d="M 85 80 Q 100 140 110 165" stroke="#a0703a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M 140 70 Q 155 130 165 160" stroke="#a0703a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M 195 80 Q 205 135 215 162" stroke="#a0703a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Crust highlight -->
+          <path d="M 70 100 Q 150 75 230 105" stroke="#e0b880" stroke-width="2" fill="none" opacity="0.6"/>
+          <!-- Shadow under loaf -->
+          <ellipse cx="150" cy="228" rx="110" ry="12" fill="#b08040" opacity="0.25"/>
+          <!-- Flour dusting dots -->
+          <circle cx="110" cy="95" r="2" fill="#f0e0c0" opacity="0.6"/>
+          <circle cx="155" cy="82" r="1.5" fill="#f0e0c0" opacity="0.5"/>
+          <circle cx="185" cy="90" r="2" fill="#f0e0c0" opacity="0.6"/>
+          <circle cx="130" cy="110" r="1.5" fill="#f0e0c0" opacity="0.4"/>
+          <circle cx="175" cy="105" r="1" fill="#f0e0c0" opacity="0.5"/>
+        </g>
+        <!-- Small decorative elements -->
+        <circle cx="100" cy="200" r="6" fill="#c4826a" opacity="0.3"/>
+        <circle cx="490" cy="180" r="8" fill="#7a8c6e" opacity="0.25"/>
+        <circle cx="470" cy="560" r="5" fill="#c4935a" opacity="0.3"/>
+        <!-- Dots pattern -->
+        <g opacity="0.15" fill="#8b6645">
+          <circle cx="60" cy="320" r="3"/>
+          <circle cx="80" cy="340" r="2"/>
+          <circle cx="55" cy="355" r="2.5"/>
+          <circle cx="530" cy="300" r="3"/>
+          <circle cx="545" cy="325" r="2"/>
+          <circle cx="525" cy="345" r="2.5"/>
+        </g>
+        <!-- Bottom text -->
+        <text x="300" y="620" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="13" fill="#8b6645" opacity="0.5" letter-spacing="4">SLOW · FERMENTED · LOVED</text>
+        <line x1="160" y1="628" x2="200" y2="628" stroke="#8b6645" stroke-width="0.5" opacity="0.4"/>
+        <line x1="400" y1="628" x2="440" y2="628" stroke="#8b6645" stroke-width="0.5" opacity="0.4"/>
+      </svg>
+
+      <div class="float-badge">
+        <div class="badge-num">72h</div>
+        <div class="badge-label">Fermentation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="about-strip">
+  <div class="strip-item"><span class="strip-icon">🌾</span><span class="strip-text">Stone-Ground Flour</span></div>
+  <div class="strip-dot"></div>
+  <div class="strip-item"><span class="strip-icon">⏳</span><span class="strip-text">72-Hour Cold Ferment</span></div>
+  <div class="strip-dot"></div>
+  <div class="strip-item"><span class="strip-icon">🤍</span><span class="strip-text">No Additives. Ever.</span></div>
+  <div class="strip-dot"></div>
+  <div class="strip-item"><span class="strip-icon">🏡</span><span class="strip-text">Home Baked with Care</span></div>
+</div>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story-visual reveal">
+    <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px;">
+      <defs>
+        <radialGradient id="bg-grad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#f0e8da"/>
+          <stop offset="100%" stop-color="#e2d0b8"/>
+        </radialGradient>
+      </defs>
+      <circle cx="240" cy="240" r="230" fill="url(#bg-grad)"/>
+      <!-- Decorative ring -->
+      <circle cx="240" cy="240" r="200" fill="none" stroke="#c9b090" stroke-width="1" stroke-dasharray="8,6" opacity="0.5"/>
+      <!-- Sourdough starter jar -->
+      <g transform="translate(140,130)">
+        <rect x="40" y="60" width="100" height="120" rx="8" fill="#d4b896" stroke="#c09a6a" stroke-width="1.5"/>
+        <rect x="50" y="40" width="80" height="28" rx="4" fill="#c09a6a"/>
+        <rect x="55" y="70" width="90" height="20" fill="#e8c898" opacity="0.5"/>
+        <!-- Bubbles in starter -->
+        <circle cx="75" cy="110" r="6" fill="#f0d8a0" opacity="0.7"/>
+        <circle cx="100" cy="125" r="4" fill="#f0d8a0" opacity="0.6"/>
+        <circle cx="120" cy="105" r="5" fill="#f0d8a0" opacity="0.7"/>
+        <circle cx="88" cy="145" r="3" fill="#f0d8a0" opacity="0.5"/>
+        <!-- Label -->
+        <rect x="58" y="145" width="64" height="24" rx="2" fill="white" opacity="0.6"/>
+        <text x="90" y="161" text-anchor="middle" font-family="Cormorant Garamond" font-size="9" fill="#8b6645">STARTER</text>
+      </g>
+      <!-- Wooden spoon -->
+      <g transform="translate(280, 160) rotate(30)">
+        <ellipse cx="20" cy="20" rx="18" ry="14" fill="#c4935a" stroke="#a0703a" stroke-width="1"/>
+        <rect x="18" y="30" width="4" height="90" rx="2" fill="#d4a46a" stroke="#a0703a" stroke-width="0.5"/>
+      </g>
+      <!-- Small flowers -->
+      <g opacity="0.6">
+        <circle cx="160" cy="360" r="6" fill="#c4826a"/>
+        <circle cx="148" cy="353" r="4" fill="#c4826a"/>
+        <circle cx="172" cy="353" r="4" fill="#c4826a"/>
+        <circle cx="160" cy="345" r="4" fill="#c4826a"/>
+        <circle cx="160" cy="353" r="5" fill="#f0e8da"/>
+      </g>
+      <g opacity="0.5">
+        <circle cx="330" cy="340" r="5" fill="#7a8c6e"/>
+        <circle cx="320" cy="334" r="3" fill="#7a8c6e"/>
+        <circle cx="340" cy="334" r="3" fill="#7a8c6e"/>
+        <circle cx="330" cy="328" r="3" fill="#7a8c6e"/>
+        <circle cx="330" cy="334" r="4" fill="#f0e8da"/>
+      </g>
+      <!-- Text around circle -->
+      <text x="240" y="430" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="11" fill="#8b6645" opacity="0.5" letter-spacing="5">THE HOUSE STANDARD</text>
+    </svg>
+    <div class="story-tag">Est. 2025</div>
+  </div>
+
+  <div>
+    <div class="section-label reveal">Our Story</div>
+    <h2 class="reveal">Bread baked with <em>intention,</em> shared with love.</h2>
+    <p class="reveal">The House Standard started the way most good things do — at a kitchen table, with a jar of starter, and a belief that we can do better. Better than preservatives. Better than mass production. Better than bread that forgets what bread is supposed to be.</p>
+    <p class="reveal">Every loaf we bake is a small act of resistance against the rushed and the processed. We believe in slow food, sustainable living, and the quiet joy of sharing something made by hand.</p>
+
+    <div class="story-values">
+      <div class="value-row reveal reveal-delay-1">
+        <div class="value-icon">🌾</div>
+        <div class="value-text">
+          <strong>Real Ingredients Only</strong>
+          <span>Flour, water, salt, and time. That's it. No dough conditioners, no shortcuts.</span>
+        </div>
+      </div>
+      <div class="value-row reveal reveal-delay-2">
+        <div class="value-icon">🌱</div>
+        <div class="value-text">
+          <strong>Sustainably Minded</strong>
+          <span>Minimal packaging, locally sourced when possible, zero waste in our process.</span>
+        </div>
+      </div>
+      <div class="value-row reveal reveal-delay-3">
+        <div class="value-icon">🏡</div>
+        <div class="value-text">
+          <strong>Community First</strong>
+          <span>We're neighbors baking for neighbors. This is what abundant living looks like.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BREADS -->
+<section class="breads" id="breads">
+  <div class="breads-header">
+    <div class="section-label reveal" style="justify-content:center">The Breads</div>
+    <h2 class="reveal">Every loaf tells a story.</h2>
+    <p class="reveal">Made in small batches, available weekly. Each variety is crafted with the same care and slow fermentation that makes sourdough special.</p>
+  </div>
+
+  <div class="breads-grid">
+    <div class="bread-card reveal">
+      <div class="bread-img">
+        <div class="bread-img-bg" style="background: linear-gradient(135deg, #f0e0c0, #e8d0a8);"></div>
+        <span class="bread-emoji">🍞</span>
+      </div>
+      <div class="bread-info">
+        <div class="bread-name">Classic Country</div>
+        <div class="bread-desc">Our signature. A perfectly balanced open crumb with a crackly crust. The one that started it all.</div>
+        <div class="bread-footer">
+          <span class="bread-price">$12</span>
+          <a href="#order" class="bread-order">Pre-Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bread-card reveal reveal-delay-1">
+      <div class="bread-img">
+        <div class="bread-img-bg" style="background: linear-gradient(135deg, #e8d8b0, #d4c090);"></div>
+        <span class="bread-emoji">🌿</span>
+      </div>
+      <div class="bread-info">
+        <div class="bread-name">Rosemary Olive Oil</div>
+        <div class="bread-desc">Fresh rosemary, good olive oil, and flaky sea salt. A loaf that fills the whole house with warmth.</div>
+        <div class="bread-footer">
+          <span class="bread-price">$14</span>
+          <a href="#order" class="bread-order">Pre-Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bread-card reveal reveal-delay-2">
+      <div class="bread-img">
+        <div class="bread-img-bg" style="background: linear-gradient(135deg, #d4c8b8, #b8a898);"></div>
+        <span class="bread-emoji">🌰</span>
+      </div>
+      <div class="bread-info">
+        <div class="bread-name">Seeded Whole Wheat</div>
+        <div class="bread-desc">Stone-ground whole wheat with sunflower, sesame, and flax. Hearty, nutty, and deeply satisfying.</div>
+        <div class="bread-footer">
+          <span class="bread-price">$13</span>
+          <a href="#order" class="bread-order">Pre-Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bread-card reveal">
+      <span class="coming-badge">Coming Soon</span>
+      <div class="bread-img">
+        <div class="bread-img-bg" style="background: linear-gradient(135deg, #f0d8c0, #e8c8a8);"></div>
+        <span class="bread-emoji">🍯</span>
+      </div>
+      <div class="bread-info">
+        <div class="bread-name">Honey Oat</div>
+        <div class="bread-desc">A touch of local honey, rolled oats, and a soft crumb. Perfect for morning toast and afternoon snacking.</div>
+        <div class="bread-footer">
+          <span class="bread-price">$13</span>
+          <a href="#order" class="bread-order">Notify Me</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bread-card reveal reveal-delay-1">
+      <span class="coming-badge">Coming Soon</span>
+      <div class="bread-img">
+        <div class="bread-img-bg" style="background: linear-gradient(135deg, #c8b8d0, #b0a0c0);"></div>
+        <span class="bread-emoji">🫐</span>
+      </div>
+      <div class="bread-info">
+        <div class="bread-name">Blueberry Lemon</div>
+        <div class="bread-desc">Wild blueberries and lemon zest folded into a slightly sweet sourdough. A seasonal treat worth waiting for.</div>
+        <div class="bread-footer">
+          <span class="bread-price">$15</span>
+          <a href="#order" class="bread-order">Notify Me</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bread-card reveal reveal-delay-2">
+      <span class="coming-badge">Coming Soon</span>
+      <div class="bread-img">
+        <div class="bread-img-bg" style="background: linear-gradient(135deg, #d0c8b0, #c0b090);"></div>
+        <span class="bread-emoji">🧄</span>
+      </div>
+      <div class="bread-info">
+        <div class="bread-name">Roasted Garlic</div>
+        <div class="bread-desc">Slow-roasted garlic melted into every bite. The bread people will ask you to bring to every gathering.</div>
+        <div class="bread-footer">
+          <span class="bread-price">$14</span>
+          <a href="#order" class="bread-order">Notify Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-header">
+    <div>
+      <div class="section-label reveal">How We Bake</div>
+      <h2 class="reveal">The slow way<br>is the <em>right</em> way.</h2>
+    </div>
+    <p class="reveal">We don't rush. Every loaf follows a process refined over hundreds of bakes. The result is bread with real flavor, real texture, and real nutrition — the kind your gut actually thanks you for.</p>
+  </div>
+
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-circle">
+        <span>🌾</span>
+        <div class="step-num">1</div>
+      </div>
+      <h3>Mill & Mix</h3>
+      <p>We start with quality flour and our living starter, mixing by hand to feel the dough come alive.</p>
+    </div>
+    <div class="step reveal reveal-delay-1">
+      <div class="step-circle">
+        <span>⏳</span>
+        <div class="step-num">2</div>
+      </div>
+      <h3>Long Ferment</h3>
+      <p>72 hours cold fermentation develops complex flavor and breaks down gluten for better digestion.</p>
+    </div>
+    <div class="step reveal reveal-delay-2">
+      <div class="step-circle">
+        <span>✋</span>
+        <div class="step-num">3</div>
+      </div>
+      <h3>Shape & Score</h3>
+      <p>Each loaf is hand-shaped and scored — the pattern guides the oven spring and makes each loaf unique.</p>
+    </div>
+    <div class="step reveal reveal-delay-3">
+      <div class="step-circle">
+        <span>🔥</span>
+        <div class="step-num">4</div>
+      </div>
+      <h3>Dutch Oven Bake</h3>
+      <p>Baked in a sealed Dutch oven to trap steam — giving that crackling crust and tender, open crumb.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-strip">
+  <blockquote class="reveal">"Once you've had real sourdough, you can't go back. There's something in the crust, the chew, the sour — it tastes like someone actually cared."</blockquote>
+  <cite class="reveal">— A neighbor who became a regular</cite>
+</div>
+
+<!-- ORDER -->
+<section class="order-section" id="order">
+  <div class="order-inner">
+    <div class="section-label reveal">Get Fresh Bread</div>
+    <h2 class="reveal">Join our<br><em>weekly</em> list.</h2>
+    <p class="reveal">We bake in small batches every week. Join the list to get first access to pre-orders, new varieties, and occasional notes from our kitchen.</p>
+    <div class="email-form reveal">
+      <input type="email" class="email-input" placeholder="Your email address" id="emailInput"/>
+      <button class="email-btn" onclick="handleSignup()">Join</button>
+    </div>
+    <p class="form-note reveal">No spam. Just bread updates. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">The House Standard</div>
+      <p class="footer-tagline">Small batch sourdough baked with intention, shared with love. Because the best things are worth doing slowly.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#breads">The Breads</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#order">Pre-Order</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 The House Standard · All Rights Reserved</p>
+    <p>Baked with love · Built with AI</p>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(r => observer.observe(r));
+
+// Nav shrink on scroll
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 60) {
+    nav.style.padding = '14px 56px';
+  } else {
+    nav.style.padding = '24px 56px';
+  }
+});
+
+// Email signup
+function handleSignup() {
+  const input = document.getElementById('emailInput');
+  const val = input.value.trim();
+  if (!val || !val.includes('@')) {
+    input.style.borderColor = 'rgba(196,130,106,0.6)';
+    input.placeholder = 'Please enter a valid email';
+    return;
+  }
+  input.value = '';
+  input.placeholder = '✓ You\'re on the list — thank you!';
+  input.style.borderColor = 'rgba(122,140,110,0.6)';
+  document.querySelector('.email-btn').textContent = '✓ Done';
+  document.querySelector('.email-btn').style.background = '#7a8c6e';
+}
+</script>
+</body>
+</html>
